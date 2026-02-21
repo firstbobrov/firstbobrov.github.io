@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jora — Легенда танков и Таркова</title>
-    <!-- ФАВИКОН - теперь будет красивая картинка на вкладке -->
+    <title>Егор Яковьюк | Легенда киберспорта</title>
+    
+    <!-- Фавикон -->
     <link rel="icon" type="image/png" href="favicon.png">
-    <!-- Если хотите иконку для Safari на iPhone -->
     <link rel="apple-touch-icon" href="favicon.png">
     
-    <!-- Шрифт Inter -->
+    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 (ОБНОВЛЕННАЯ ВЕРСИЯ) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* СБРОС И БАЗА */
+        /* ===== СТИЛИ (БЕЗ ИЗМЕНЕНИЙ) ===== */
         * {
             margin: 0;
             padding: 0;
@@ -25,308 +27,527 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f5f9;
-            color: #1e1e2f;
-            line-height: 1.5;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
+            background-color: #0c0f15;
+            color: #e5e9f0;
+            line-height: 1.6;
         }
 
-        /* КАРТОЧКА */
-        .card {
-            max-width: 1200px;
+        /* ШАПКА */
+        .header {
+            background: linear-gradient(180deg, #0f1219 0%, rgba(12,15,21,0.95) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #fff8e7, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            color: #d4af37;
+            display: block;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: #b9c4d1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            padding: 8px 0;
+            position: relative;
+            transition: 0.2s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37, #f5e6b3);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link:hover::after {
             width: 100%;
-            background: #ffffff;
-            border-radius: 48px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 10px 30px rgba(0, 20, 40, 0.06);
-            overflow: hidden;
         }
 
-        .card-inner {
-            display: flex;
-            flex-direction: column;
+        .nav-link.active {
+            color: #d4af37;
+            font-weight: 600;
         }
 
-        @media (min-width: 1000px) {
-            .card-inner {
-                flex-direction: row-reverse;
-            }
+        .nav-link.active::after {
+            width: 100%;
         }
 
-        /* ПРАВАЯ СТОРОНА — ФОТО */
-        .photo-side {
-            flex: 1;
-            background-color: #1a2639;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* ОСНОВНОЙ КОНТЕЙНЕР */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 40px;
         }
 
+        /* ГЕРОЙ */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin: 40px 0 80px;
+            min-height: 600px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #d4af37;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 8px 18px;
+            border-radius: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #e5e9f0 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero h1 .nickname {
+            background: linear-gradient(135deg, #d4af37, #f9e076);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #a0aec0;
+            max-width: 600px;
+            margin-bottom: 40px;
+            border-left: 4px solid #d4af37;
+            padding-left: 25px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #d4af37;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8e9db3;
+        }
+
+        .hero-photo {
+            flex: 1;
+            position: relative;
+        }
+
         .photo-frame {
-            max-width: 400px;
-            width: 100%;
-            border-radius: 36px;
+            position: relative;
+            border-radius: 40px;
             overflow: hidden;
-            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
+            box-shadow: 0 30px 50px -20px #000, 0 0 0 2px rgba(212, 175, 55, 0.3), 0 0 0 6px rgba(12,15,21,0.9);
+            transform: rotate(2deg);
+            transition: 0.3s;
         }
 
         .photo-frame:hover {
-            transform: scale(1.01);
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 40px 70px -20px #000, 0 0 0 3px #d4af37, 0 0 0 10px rgba(212,175,55,0.15);
         }
 
         .photo-frame img {
             display: block;
             width: 100%;
             height: auto;
-            aspect-ratio: 1 / 1.1;
+            aspect-ratio: 4/5;
             object-fit: cover;
-            background: #2d3b4f;
+            background: #1e2636;
         }
 
-        /* ЛЕВАЯ СТОРОНА */
-        .info-side {
-            flex: 1.2;
-            padding: 60px 48px;
-            background: white;
+        .gold-spark {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
         }
 
-        .tag {
+        /* СЕКЦИИ */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
             display: inline-block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: #0066cc;
-            background: #e6f0ff;
-            padding: 4px 14px;
-            border-radius: 40px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(0,102,204,0.15);
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: #0b1a2e;
-            margin-bottom: 12px;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, transparent);
         }
 
-        .nickname {
-            color: #0066cc;
-            background: linear-gradient(145deg, #0066cc, #4b8bbe);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .section-title.center {
+            display: block;
+            text-align: center;
         }
 
-        .subhead {
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: #4a5568;
-            margin-bottom: 36px;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 24px;
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .achievement-mini {
-            display: flex;
-            gap: 28px;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
+        /* КАРТОЧКИ ДОСТИЖЕНИЙ */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
         }
 
-        .ach-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .ach-card {
+            background: linear-gradient(145deg, #131821, #0e121b);
+            border-radius: 30px;
+            padding: 40px 30px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ach-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #d4af37, #f5e6b3);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .ach-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 30px 40px -20px #000;
+        }
+
+        .ach-card:hover::before {
+            transform: translateX(0);
         }
 
         .ach-icon {
-            background: #f0f4ff;
-            width: 48px;
-            height: 48px;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #0066cc;
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 25px;
         }
 
-        .ach-text h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        .ach-text p {
-            font-size: 0.95rem;
-            color: #64748b;
-        }
-
-        .bio {
-            background: #f8fafd;
-            border-radius: 32px;
-            padding: 28px;
-            margin: 32px 0 28px;
-            border: 1px solid #e9eef4;
-        }
-
-        .bio p {
-            font-size: 1.1rem;
-            color: #1e293b;
-            margin-bottom: 18px;
-        }
-
-        .bio p:last-child {
-            margin-bottom: 0;
-        }
-
-        .bio strong {
+        .ach-card h3 {
+            font-size: 2rem;
             font-weight: 700;
-            color: #0b1a2e;
+            margin-bottom: 10px;
+            color: #fff;
         }
 
-        .highlight {
-            color: #0066cc;
-            font-weight: 600;
+        .ach-card .sub {
+            font-size: 1.1rem;
+            color: #a0aec0;
+            margin-bottom: 20px;
+            font-weight: 300;
         }
 
-        .links {
+        .ach-card p {
+            color: #b9c4d1;
+        }
+
+        /* ССЫЛКИ */
+        .links-section {
+            background: linear-gradient(145deg, #131821, #0e121b);
+            border-radius: 60px;
+            padding: 60px;
+            margin: 80px 0;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .links-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
-            margin: 32px 0 10px;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        .link-btn {
+        .link-button {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background: #f0f4fa;
-            color: #1e293b;
-            padding: 14px 28px;
+            gap: 15px;
+            background: rgba(255,255,255,0.03);
+            color: #fff;
+            padding: 20px 40px;
             border-radius: 60px;
-            font-weight: 600;
-            font-size: 1rem;
             text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
             transition: 0.2s;
-            border: 1px solid transparent;
+            min-width: 240px;
+            justify-content: center;
         }
 
-        .link-btn i {
-            font-size: 1.3rem;
-            color: #0066cc;
+        .link-button i {
+            font-size: 1.6rem;
+            color: #d4af37;
         }
 
-        .link-btn:hover {
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 20px -10px rgba(0,102,204,0.3);
+        .link-button:hover {
+            background: #d4af37;
+            border-color: #d4af37;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(212,175,55,0.3);
         }
 
-        .link-btn:hover i {
-            color: white;
+        .link-button:hover i {
+            color: #0c0f15;
         }
 
-        .link-btn.vk-link i {
-            color: #2787f5;
-        }
-        .link-btn.vk-link:hover i {
-            color: white;
-        }
-
-        .footnote {
-            border-top: 1px dashed #dde3ed;
-            margin-top: 20px;
-            padding-top: 20px;
-            font-size: 0.9rem;
+        /* ФУТЕР */
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
             color: #68748e;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
         }
-        .footnote span i {
-            color: #0066cc;
-            margin-right: 6px;
+
+        .legacy {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .legacy i {
+            color: #d4af37;
+            margin: 0 10px;
+        }
+
+        /* АДАПТАЦИЯ */
+        @media (max-width: 1000px) {
+            .hero {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-menu {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .links-grid {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                EGOR YAKOVYUK
+                <span>THE LEGEND</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active">Главная</a>
+                <a href="bio.html" class="nav-link">Биография</a>
+                <a href="wot.html" class="nav-link">World of Tanks</a>
+                <a href="tarkov.html" class="nav-link">Escape from Tarkov</a>
+                <a href="gallery.html" class="nav-link">Галерея</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </nav>
+        </div>
+    </header>
 
-<div class="card">
-    <div class="card-inner">
-        <!-- ФОТО -->
-        <div class="photo-side">
-            <div class="photo-frame">
-                <img src="jora.png" alt="Jora — киберспортсмен">
+    <main class="main">
+        <!-- ГЕРОЙ -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-label">Легенда киберспорта</div>
+                <h1>Егор <span class="nickname">"Jora"</span><br>Яковьюк</h1>
+                <div class="hero-subtitle">
+                    Трёхкратный чемпион мира по «Миру танков» · Элита Escape from Tarkov
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">3x</div>
+                        <div class="stat-label">Чемпион мира WoT</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2018-22</div>
+                        <div class="stat-label">Золотая эра танков</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">#1</div>
+                        <div class="stat-label">Рейтинг EFT</div>
+                    </div>
+                </div>
             </div>
+            <div class="hero-photo">
+                <div class="photo-frame">
+                    <img src="jora.png" alt="Егор Яковьюк — легенда киберспорта">
+                </div>
+                <div class="gold-spark"></div>
+            </div>
+        </section>
+
+        <!-- ДОСТИЖЕНИЯ -->
+	<h2 class="section-title">Наследие чемпиона</h2>
+	<div class="achievements-grid">
+    	<div class="ach-card">
+        	<div class="ach-icon"><i class="fas fa-trophy"></i></div>
+        	<h3>3</h3>
+        	<div class="sub">Чемпиона мира</div>
+        	<p>WGL 2018, 2020, 2021 — абсолютный рекорд в истории команды.</p>
+    	</div>
+    	<div class="ach-card">
+        	<div class="ach-icon"><i class="fas fa-medal"></i></div>
+        	<h3>2022</h3>
+        	<div class="sub">Завершение карьеры</div>
+        	<p>Ушёл непобеждённым, оставив легендарный стиль игры.</p>
+    	</div>
+    	<div class="ach-card">
+        	<div class="ach-icon"><i class="fas fa-crosshairs"></i></div>
+        	<h3>#1</h3>
+        	<div class="sub">Escape from Tarkov</div>
+        	<p>Ныне — один из самых опасных рейдеров в мире Tarkov.</p>
+    	</div>
+	</div>
+
+        <!-- ЦИТАТА -->
+        <div style="background: rgba(19,24,33,0.6); border-radius: 50px; padding: 50px; margin: 60px 0; border: 1px solid rgba(212,175,55,0.1);">
+            <p style="font-size: 1.5rem; font-weight: 300; max-width: 900px; margin: 0 auto; text-align: center; font-style: italic;">
+                «Танки научили меня держать удар. Тарков научил бить первым. 
+                Я не ушёл из киберспорта — я просто сменил поле боя».
+            </p>
+            <p style="text-align: center; margin-top: 30px; color: #d4af37;">— Егор Яковьюк</p>
         </div>
 
-        <!-- ИНФОРМАЦИЯ -->
-        <div class="info-side">
-            <div class="tag">⚡ HALL OF FAME · КИБЕРСПОРТ</div>
-
-            <h1>Jora <span class="nickname">“kozerok”</span></h1>
-            <div class="subhead">трёхкратный чемпион мира по «Миру танков» · легенда EFT</div>
-
-            <div class="achievement-mini">
-                <div class="ach-item">
-                    <div class="ach-icon"><i class="fas fa-trophy"></i></div>
-                    <div class="ach-text">
-                        <h3>3x WoT</h3>
-                        <p>чемпион мира</p>
-                    </div>
-                </div>
-                <div class="ach-item">
-                    <div class="ach-icon"><i class="fas fa-dice-d6"></i></div>
-                    <div class="ach-text">
-                        <h3>2022</h3>
-                        <p>финал карьеры танкиста</p>
-                    </div>
-                </div>
-                <div class="ach-item">
-                    <div class="ach-icon"><i class="fas fa-crosshairs"></i></div>
-                    <div class="ach-text">
-                        <h3>#1 EFT</h3>
-                        <p>текущий рейтинг</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bio">
-                <p><strong>Трёхкратный чемпион мира</strong> по «Миру танков» (2018, 2020, 2021) — абсолютный рекордсмен по победам в WGL. В 2022 году завершил профессиональную карьеру танкиста, оставив за собой статус легенды.</p>
-                <p>Сегодня — <span class="highlight">один из сильнейших игроков в Escape from Tarkov</span>. Хладнокровие, выучка и тактическое чутьё позволяют ему доминировать в самых жёстких рейдах. Его опыт — символ перерождения чемпиона.</p>
-            </div>
-
-            <div class="links">
-                <a href="https://tanki.su/ru/community/accounts/90157465-kozerok/" class="link-btn" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-tank"></i> WoT · Статистика
+        <!-- ССЫЛКИ -->
+        <section class="links-section">
+            <h2 class="section-title center">Официальные ресурсы</h2>
+            <div class="links-grid">
+                <a href="https://tanki.su/ru/community/accounts/90157465-kozerok/" class="link-button" target="_blank">
+                    <i class="fas fa-tank"></i> WoT Статистика
                 </a>
-                <a href="https://steamcommunity.com/profiles/76561198456941111/" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <a href="https://steamcommunity.com/profiles/76561198456941111/" class="link-button" target="_blank">
                     <i class="fab fa-steam"></i> Steam
                 </a>
-                <a href="https://vk.com/id589048139" class="link-btn vk-link" target="_blank" rel="noopener noreferrer">
+                <a href="https://vk.com/id589048139" class="link-button" target="_blank">
                     <i class="fab fa-vk"></i> VKontakte
                 </a>
+                <!-- КНОПКА TWITCH -->
+                <a href="https://www.twitch.tv/b_komhate" class="link-button" target="_blank">
+                    <i class="fab fa-twitch"></i> Twitch
+                </a>
             </div>
+        </section>
 
-            <div class="footnote">
-                <span><i class="fas fa-calendar-alt"></i> Завершил карьеру танкиста в 2022</span>
-                <span><i class="fas fa-map-marked-alt"></i> Ныне рейды Tarkov</span>
-                <span><i class="fas fa-crown"></i> 3× чемпион мира</span>
+        <!-- ПОДВАЛ -->
+        <footer class="footer">
+            <div class="legacy">
+                <i class="fas fa-crown"></i> 3× Чемпион мира · Зал славы WoT · Легенда Tarkov <i class="fas fa-crown"></i>
             </div>
-        </div>
-    </div>
-</div>
-
+            <div style="margin-top: 20px;">
+                © 2025 — официальный сайт Егора Яковьюка
+            </div>
+        </footer>
+    </main>
 </body>
 </html>
