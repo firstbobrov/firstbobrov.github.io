@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jora — Легенда танков и Таркова</title>
+    <!-- Шрифт Inter (более современный и чистый) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* СБРОС И БАЗА */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f5f9;
+            color: #1e1e2f;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        /* КАРТОЧКА (белая, чистая, с тенью) */
+        .card {
+            max-width: 1200px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 48px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 10px 30px rgba(0, 20, 40, 0.06);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .card-inner {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 1000px) {
+            .card-inner {
+                flex-direction: row-reverse; /* Фото справа */
+            }
+        }
+
+        /* ПРАВАЯ СТОРОНА — ФОТО (ЗОНА ИЗОБРАЖЕНИЯ) */
+        .photo-side {
+            flex: 1;
+            background-color: #1a2639; /* темный фон для контраста, если фото не на всю ширину */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .photo-frame {
+            max-width: 400px;
+            width: 100%;
+            border-radius: 36px;
+            overflow: hidden;
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.01);
+        }
+
+        .photo-frame img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1.1; /* пропорция под фото */
+            object-fit: cover;
+            background: #2d3b4f; /* фоновый цвет если изображение не загрузится */
+        }
+
+        /* ЛЕВАЯ СТОРОНА — ИНФОРМАЦИЯ */
+        .info-side {
+            flex: 1.2;
+            padding: 60px 48px;
+            background: white;
+        }
+
+        /* НИКНЕЙМ/ЗАГОЛОВОК */
+        .tag {
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #0066cc;
+            background: #e6f0ff;
+            padding: 4px 14px;
+            border-radius: 40px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0,102,204,0.15);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #0b1a2e;
+            margin-bottom: 12px;
+        }
+
+        .nickname {
+            color: #0066cc;
+            background: linear-gradient(145deg, #0066cc, #4b8bbe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subhead {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #4a5568;
+            margin-bottom: 36px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 24px;
+        }
+
+        /* ДОСТИЖЕНИЯ (кратко) */
+        .achievement-mini {
+            display: flex;
+            gap: 28px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .ach-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ach-icon {
+            background: #f0f4ff;
+            width: 48px;
+            height: 48px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #0066cc;
+        }
+
+        .ach-text h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .ach-text p {
+            font-size: 0.95rem;
+            color: #64748b;
+        }
+
+        /* ОПИСАНИЕ (чистое, красивое) */
+        .bio {
+            background: #f8fafd;
+            border-radius: 32px;
+            padding: 28px;
+            margin: 32px 0 28px;
+            border: 1px solid #e9eef4;
+        }
+
+        .bio p {
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+
+        .bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bio strong {
+            font-weight: 700;
+            color: #0b1a2e;
+        }
+
+        .highlight {
+            color: #0066cc;
+            font-weight: 600;
+        }
+
+        /* ССЫЛКИ (ПЛОТНЫЕ, КРУГЛЫЕ КНОПКИ) */
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 32px 0 10px;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #f0f4fa;
+            color: #1e293b;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .link-btn i {
+            font-size: 1.3rem;
+            color: #0066cc;
+        }
+
+        .link-btn:hover {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 20px -10px rgba(0,102,204,0.3);
+        }
+
+        .link-btn:hover i {
+            color: white;
+        }
+
+        /* ВК отдельный оттенок (но в ховере будет синий общий) */
+        .link-btn.vk-link i {
+            color: #2787f5;
+        }
+        .link-btn.vk-link:hover i {
+            color: white;
+        }
+
+        /* подпись к картинке (микро) */
+        .photo-credit {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: #a0b3cc;
+            text-align: right;
+        }
+
+        /* Нижняя заметка про карьеру */
+        .footnote {
+            border-top: 1px dashed #dde3ed;
+            margin-top: 20px;
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: #68748e;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .footnote span i {
+            color: #0066cc;
+            margin-right: 6px;
+        }
+
+        /* убираем служебные подсказки (по задаче) */
+        .dev-note {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="card-inner">
+
+        <!-- ФОТО (ПРАВАЯ СТОРОНА) -->
+        <div class="photo-side">
+            <div class="photo-frame">
+                <!-- Фото друга: jora.png (лежит в папке GitHub) -->
+                <img src="jora.png" alt="Jora — киберспортсмен">
+            </div>
+            <!-- микро-подпись (можно убрать если не нужна) -->
+            <div class="photo-credit"></div>
+        </div>
+
+        <!-- ИНФОРМАЦИЯ (ЛЕВАЯ СТОРОНА) -->
+        <div class="info-side">
+            <div class="tag">⚡ HALL OF FAME · КИБЕРСПОРТ</div>
+
+            <h1>Jora <span class="nickname">“kozerok”</span></h1>
+            <div class="subhead">трёхкратный чемпион мира по «Миру танков» · легенда EFT</div>
+
+            <!-- Достижения кратко -->
+            <div class="achievement-mini">
+                <div class="ach-item">
+                    <div class="ach-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="ach-text">
+                        <h3>3x WoT</h3>
+                        <p>чемпион мира</p>
+                    </div>
+                </div>
+                <div class="ach-item">
+                    <div class="ach-icon"><i class="fas fa-dice-d6"></i></div>
+                    <div class="ach-text">
+                        <h3>2022</h3>
+                        <p>финал карьеры танкиста</p>
+                    </div>
+                </div>
+                <div class="ach-item">
+                    <div class="ach-icon"><i class="fas fa-crosshairs"></i></div>
+                    <div class="ach-text">
+                        <h3>#1 EFT</h3>
+                        <p>текущий рейтинг</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Био / описание (без подсказок) -->
+            <div class="bio">
+                <p><strong>Трёхкратный чемпион мира</strong> по «Миру танков» (2018, 2020, 2021) — абсолютный рекордсмен по победам в WGL. В 2022 году завершил профессиональную карьеру танкиста, оставив за собой статус легенды.</p>
+                <p>Сегодня — <span class="highlight">один из сильнейших игроков в Escape from Tarkov</span>. Хладнокровие, выучка и тактическое чутьё позволяют ему доминировать в самых жёстких рейдах. Его опыт — символ перерождения чемпиона.</p>
+            </div>
+
+            <!-- Ссылки (активные, твои) -->
+            <div class="links">
+                <!-- Ссылка на статистику WoT (tanki.ru) -->
+                <a href="https://tanki.su/ru/community/accounts/90157465-kozerok/" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-tank"></i> WoT · Статистика
+                </a>
+                <!-- Ссылка на Steam -->
+                <a href="https://steamcommunity.com/profiles/76561198456941111/" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-steam"></i> Steam
+                </a>
+                <!-- Ссылка на VK -->
+                <a href="https://vk.com/id589048139" class="link-btn vk-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-vk"></i> VKontakte
+                </a>
+            </div>
+
+            <!-- Доп. информация (необязательно) -->
+            <div class="footnote">
+                <span><i class="fas fa-calendar-alt"></i> Завершил карьеру танкиста в 2022</span>
+                <span><i class="fas fa-map-marked-alt"></i> Ныне рейды Tarkov</span>
+                <span><i class="fas fa-crown"></i> 3× чемпион мира</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- всё чисто, без инструкций на экране -->
+</body>
+</html>
