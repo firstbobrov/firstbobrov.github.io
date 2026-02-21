@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jora — Легенда танков и Таркова</title>
-    <!-- Шрифт Inter (более современный и чистый) -->
+    <!-- ФАВИКОН - теперь будет красивая картинка на вкладке -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Если хотите иконку для Safari на iPhone -->
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <!-- Шрифт Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (иконки) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* СБРОС И БАЗА */
@@ -30,7 +35,7 @@
             padding: 24px;
         }
 
-        /* КАРТОЧКА (белая, чистая, с тенью) */
+        /* КАРТОЧКА */
         .card {
             max-width: 1200px;
             width: 100%;
@@ -38,7 +43,6 @@
             border-radius: 48px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 10px 30px rgba(0, 20, 40, 0.06);
             overflow: hidden;
-            transition: all 0.2s ease;
         }
 
         .card-inner {
@@ -48,14 +52,14 @@
 
         @media (min-width: 1000px) {
             .card-inner {
-                flex-direction: row-reverse; /* Фото справа */
+                flex-direction: row-reverse;
             }
         }
 
-        /* ПРАВАЯ СТОРОНА — ФОТО (ЗОНА ИЗОБРАЖЕНИЯ) */
+        /* ПРАВАЯ СТОРОНА — ФОТО */
         .photo-side {
             flex: 1;
-            background-color: #1a2639; /* темный фон для контраста, если фото не на всю ширину */
+            background-color: #1a2639;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -79,19 +83,18 @@
             display: block;
             width: 100%;
             height: auto;
-            aspect-ratio: 1 / 1.1; /* пропорция под фото */
+            aspect-ratio: 1 / 1.1;
             object-fit: cover;
-            background: #2d3b4f; /* фоновый цвет если изображение не загрузится */
+            background: #2d3b4f;
         }
 
-        /* ЛЕВАЯ СТОРОНА — ИНФОРМАЦИЯ */
+        /* ЛЕВАЯ СТОРОНА */
         .info-side {
             flex: 1.2;
             padding: 60px 48px;
             background: white;
         }
 
-        /* НИКНЕЙМ/ЗАГОЛОВОК */
         .tag {
             display: inline-block;
             font-size: 0.9rem;
@@ -131,7 +134,6 @@
             padding-bottom: 24px;
         }
 
-        /* ДОСТИЖЕНИЯ (кратко) */
         .achievement-mini {
             display: flex;
             gap: 28px;
@@ -168,7 +170,6 @@
             color: #64748b;
         }
 
-        /* ОПИСАНИЕ (чистое, красивое) */
         .bio {
             background: #f8fafd;
             border-radius: 32px;
@@ -181,7 +182,6 @@
             font-size: 1.1rem;
             color: #1e293b;
             margin-bottom: 18px;
-            font-weight: 400;
         }
 
         .bio p:last-child {
@@ -198,7 +198,6 @@
             font-weight: 600;
         }
 
-        /* ССЫЛКИ (ПЛОТНЫЕ, КРУГЛЫЕ КНОПКИ) */
         .links {
             display: flex;
             flex-wrap: wrap;
@@ -238,7 +237,6 @@
             color: white;
         }
 
-        /* ВК отдельный оттенок (но в ховере будет синий общий) */
         .link-btn.vk-link i {
             color: #2787f5;
         }
@@ -246,15 +244,6 @@
             color: white;
         }
 
-        /* подпись к картинке (микро) */
-        .photo-credit {
-            margin-top: 8px;
-            font-size: 0.8rem;
-            color: #a0b3cc;
-            text-align: right;
-        }
-
-        /* Нижняя заметка про карьеру */
         .footnote {
             border-top: 1px dashed #dde3ed;
             margin-top: 20px;
@@ -269,36 +258,26 @@
             color: #0066cc;
             margin-right: 6px;
         }
-
-        /* убираем служебные подсказки (по задаче) */
-        .dev-note {
-            display: none;
-        }
     </style>
 </head>
 <body>
 
 <div class="card">
     <div class="card-inner">
-
-        <!-- ФОТО (ПРАВАЯ СТОРОНА) -->
+        <!-- ФОТО -->
         <div class="photo-side">
             <div class="photo-frame">
-                <!-- Фото друга: jora.png (лежит в папке GitHub) -->
                 <img src="jora.png" alt="Jora — киберспортсмен">
             </div>
-            <!-- микро-подпись (можно убрать если не нужна) -->
-            <div class="photo-credit"></div>
         </div>
 
-        <!-- ИНФОРМАЦИЯ (ЛЕВАЯ СТОРОНА) -->
+        <!-- ИНФОРМАЦИЯ -->
         <div class="info-side">
             <div class="tag">⚡ HALL OF FAME · КИБЕРСПОРТ</div>
 
             <h1>Jora <span class="nickname">“kozerok”</span></h1>
             <div class="subhead">трёхкратный чемпион мира по «Миру танков» · легенда EFT</div>
 
-            <!-- Достижения кратко -->
             <div class="achievement-mini">
                 <div class="ach-item">
                     <div class="ach-icon"><i class="fas fa-trophy"></i></div>
@@ -323,29 +302,23 @@
                 </div>
             </div>
 
-            <!-- Био / описание (без подсказок) -->
             <div class="bio">
                 <p><strong>Трёхкратный чемпион мира</strong> по «Миру танков» (2018, 2020, 2021) — абсолютный рекордсмен по победам в WGL. В 2022 году завершил профессиональную карьеру танкиста, оставив за собой статус легенды.</p>
                 <p>Сегодня — <span class="highlight">один из сильнейших игроков в Escape from Tarkov</span>. Хладнокровие, выучка и тактическое чутьё позволяют ему доминировать в самых жёстких рейдах. Его опыт — символ перерождения чемпиона.</p>
             </div>
 
-            <!-- Ссылки (активные, твои) -->
             <div class="links">
-                <!-- Ссылка на статистику WoT (tanki.ru) -->
                 <a href="https://tanki.su/ru/community/accounts/90157465-kozerok/" class="link-btn" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-tank"></i> WoT · Статистика
                 </a>
-                <!-- Ссылка на Steam -->
                 <a href="https://steamcommunity.com/profiles/76561198456941111/" class="link-btn" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-steam"></i> Steam
                 </a>
-                <!-- Ссылка на VK -->
                 <a href="https://vk.com/id589048139" class="link-btn vk-link" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-vk"></i> VKontakte
                 </a>
             </div>
 
-            <!-- Доп. информация (необязательно) -->
             <div class="footnote">
                 <span><i class="fas fa-calendar-alt"></i> Завершил карьеру танкиста в 2022</span>
                 <span><i class="fas fa-map-marked-alt"></i> Ныне рейды Tarkov</span>
@@ -355,6 +328,5 @@
     </div>
 </div>
 
-<!-- всё чисто, без инструкций на экране -->
 </body>
 </html>
