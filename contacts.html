@@ -4,263 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Контакты | Егор Яковьюк</title>
-    
+
     <!-- Фавикон -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    
+
     <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome 6.5.1 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
+    <!-- Единый файл стилей -->
+    <link rel="stylesheet" href="css/style.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ===== ТОЛЬКО УНИКАЛЬНЫЕ СТИЛИ ДЛЯ contacts.html ===== */
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0c0f15;
-            color: #e5e9f0;
-            line-height: 1.5;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ===== ШАПКА (ИДЕАЛЬНО ОДИНАКОВАЯ ДЛЯ ВСЕХ СТРАНИЦ) ===== */
-        .header {
-            background: linear-gradient(180deg, #0f1219 0%, rgba(12,15,21,0.98) 100%);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            width: 100%;
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff8e7, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-decoration: none;
-            line-height: 1.2;
-            z-index: 1001;
-            white-space: nowrap;
-        }
-
-        .logo span {
-            font-size: 0.65rem;
-            color: #d4af37;
-            display: block;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-        }
-
-        .burger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .burger span {
-            display: block;
-            width: 100%;
-            height: 2.5px;
-            background-color: #d4af37;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .burger.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-
-        .burger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 24px;
-        }
-
-        .nav-link {
-            color: #b9c4d1;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 6px 0;
-            position: relative;
-            white-space: nowrap;
-            transition: color 0.2s;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #d4af37, #f5e6b3);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #fff;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .nav-link.active {
-            color: #d4af37;
-            font-weight: 600;
-        }
-
-        /* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
-        .main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* ===== ЗАГОЛОВОК СТРАНИЦЫ ===== */
-        .page-header {
-            text-align: center;
-            margin: 20px 0 40px;
-        }
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #ffffff, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .page-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: #a0aec0;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* ===== СЕТКА КОНТАКТОВ ===== */
-        .contacts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 30px 0 50px;
-        }
-
-        .contact-card {
-            background: linear-gradient(145deg, #131821, #0e121b);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 25px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            color: #e5e9f0;
-            display: block;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #d4af37, #f5e6b3);
-            transform: translateX(-100%);
-            transition: transform 0.4s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px) translateZ(0);
-            border-color: #d4af37;
-            box-shadow: 0 20px 30px -15px #000;
-        }
-
-        .contact-card:hover::before {
-            transform: translateX(0);
-        }
-
-        .contact-icon {
-            font-size: 3rem;
-            color: #d4af37;
-            margin-bottom: 15px;
-        }
-
-        .contact-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .contact-card .handle {
-            font-size: 1rem;
-            color: #d4af37;
-            margin-bottom: 12px;
-            word-break: break-word;
-        }
-
-        .contact-card .description {
-            color: #a0aec0;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        /* ===== СПЕЦИАЛЬНЫЕ СЕКЦИИ ===== */
+        /* СПЕЦИАЛЬНАЯ СЕКЦИЯ (расписание) */
         .special-section {
             background: linear-gradient(145deg, #131821, #0e121b);
             border-radius: 30px;
@@ -269,383 +32,11 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.2rem);
-            font-weight: 700;
-            margin-bottom: 25px;
-            position: relative;
-            display: inline-block;
-            color: #fff;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #d4af37, transparent);
-        }
-
-        /* ===== РАСПИСАНИЕ СТРИМОВ ===== */
-        .stream-schedule {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .schedule-item {
-            background: rgba(0,0,0,0.3);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            transition: background 0.3s ease, transform 0.3s ease;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .schedule-item:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .schedule-item .day {
-            color: #d4af37;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .schedule-item .time {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .schedule-item .platform {
-            color: #a0aec0;
-            font-size: 0.9rem;
-        }
-
-        .schedule-item .platform i {
-            color: #d4af37;
-            margin-right: 5px;
-        }
-
-        .twitch-button {
-            display: inline-block;
-            background: #d4af37;
-            color: #0c0f15;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            width: 100%;
-            max-width: 300px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .twitch-button:hover {
-            background: transparent;
-            color: #d4af37;
-            border-color: #d4af37;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px -10px #d4af37;
-        }
-
-        .twitch-button i {
-            margin-right: 8px;
-        }
-
-        /* ===== БИЗНЕС КАРТОЧКА ===== */
-        .business-card {
-            background: rgba(212, 175, 55, 0.05);
-            border-radius: 30px;
-            padding: 30px 25px;
-            margin: 40px 0;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .business-card:hover {
-            border-color: #d4af37;
-            transform: translateY(-3px);
-        }
-
-        .business-title {
-            font-size: 1.3rem;
-            color: #d4af37;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .business-title i {
-            margin: 0 5px;
-        }
-
-        .business-email {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-            word-break: break-word;
-        }
-
-        .business-email i {
-            color: #d4af37;
-            margin-right: 8px;
-        }
-
-        .business-note {
-            color: #a0aec0;
-            font-size: 0.95rem;
-        }
-
-        /* ===== ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ ===== */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .info-item {
-            background: rgba(19,24,33,0.5);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, background 0.3s ease;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .info-item:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .info-item i {
-            color: #d4af37;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .info-item h3 {
-            color: #fff;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .info-item p {
-            color: #d4af37;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        /* ===== ФУТЕР ===== */
-        .footer {
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
-            padding: 25px 0;
-            margin-top: 40px;
-            text-align: center;
-            color: #68748e;
-        }
-
-        .legacy {
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .legacy i {
-            color: #d4af37;
-            margin: 0 5px;
-        }
-
-        .footer-copyright {
-            font-size: 0.7rem;
-            color: #5a6578;
-        }
-
-        /* ===== АДАПТАЦИЯ ДЛЯ РАЗНЫХ ЭКРАНОВ ===== */
-        @media (max-width: 1000px) {
-            .nav-menu {
-                gap: 16px;
-            }
-            
-            .nav-link {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .burger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 350px;
-                height: 100vh;
-                background: #0f1219;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 30px;
-                transition: right 0.3s ease;
-                border-left: 1px solid rgba(212, 175, 55, 0.2);
-                z-index: 1000;
-                padding: 20px;
-            }
-
-            .nav-menu.active {
-                right: 0;
-            }
-
-            .nav-link {
-                font-size: 1.2rem;
-                white-space: normal;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 10px 15px;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .logo span {
-                font-size: 0.55rem;
-            }
-
-            .main {
-                padding: 15px;
-            }
-
-            .page-header {
-                margin: 10px 0 30px;
-            }
-
-            .page-title {
-                font-size: 2.5rem;
-            }
-
-            .page-subtitle {
-                font-size: 1rem;
-            }
-
-            .contacts-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .contact-card {
-                padding: 25px 15px;
-            }
-
-            .contact-icon {
-                font-size: 2.5rem;
-            }
-
-            .contact-card h3 {
-                font-size: 1.3rem;
-            }
-
-            .special-section {
-                padding: 25px 15px;
-            }
-
-            .stream-schedule {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .schedule-item {
-                padding: 15px;
-            }
-
-            .schedule-item .time {
-                font-size: 1.1rem;
-            }
-
-            .twitch-button {
-                max-width: 100%;
-                padding: 12px 20px;
-            }
-
-            .business-card {
-                padding: 25px 15px;
-            }
-
-            .business-email {
-                font-size: 1.1rem;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .info-item {
-                padding: 15px;
-            }
-
-            .info-item i {
-                font-size: 1.8rem;
-            }
-
-            .info-item p {
-                font-size: 1.1rem;
-            }
-
-            .legacy {
-                font-size: 0.7rem;
-                line-height: 1.4;
-            }
-        }
-
-        @media (min-width: 769px) and (max-width: 1100px) {
-            .contacts-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stream-schedule {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .info-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1400px) {
-            .nav-link {
-                font-size: 1rem;
-            }
-            
-            .page-title {
-                font-size: 4rem;
-            }
-            
-            .contact-card {
-                padding: 35px 25px;
-            }
-            
-            .contact-icon {
-                font-size: 3.5rem;
-            }
+        /* УМЕНЬШАЕМ ОТСТУП И РАЗМЕР ЗАГОЛОВКА ТОЛЬКО В ЭТОМ БЛОКЕ */
+        .special-section .section-title {
+            margin-top: 5px;      /* Уменьшаем отступ сверху */
+            margin-bottom: 20px;   /* Оставляем нижний отступ */
+            font-size: 2rem;       /* Уменьшаем размер шрифта */
         }
     </style>
 </head>
@@ -656,7 +47,7 @@
                 EGOR YAKOVYUK
                 <span>THE LEGEND</span>
             </a>
-            
+
             <div class="burger" id="burger">
                 <span></span>
                 <span></span>
@@ -719,8 +110,8 @@
         <section class="special-section">
             <h2 class="section-title">Расписание стримов</h2>
             <p style="margin-bottom: 20px; color: #a0aec0; font-size: 0.95rem;">Смотри рейды в прямом эфире на Twitch</p>
-            
-            <div class="stream-schedule">
+
+            <div class="schedule-grid">
                 <div class="schedule-item">
                     <div class="day">Понедельник</div>
                     <div class="time">20:00 - 00:00</div>
@@ -783,31 +174,33 @@
         </div>
 
         <!-- ПОДВАЛ -->
-        <!-- ПОДВАЛ -->
-<footer class="footer">
-    <div class="legacy">
-        <i class="fas fa-crown"></i> 3× Чемпион мира · Зал славы WoT · Легенда Tarkov <i class="fas fa-crown"></i>
-    </div>
-    <div style="margin-top: 10px; font-size: 0.75rem;">
-        © 2025 — официальный сайт Егора Яковьюка
-    </div>
-</footer>
+        <footer class="footer">
+            <div class="legacy">
+                <i class="fas fa-crown"></i> 3× Чемпион мира · Зал славы WoT · Легенда Tarkov <i class="fas fa-crown"></i>
+            </div>
+            <div class="footer-copyright">
+                © 2025 — официальный сайт Егора Яковьюка
+            </div>
+        </footer>
     </main>
 
     <script>
         // Бургер-меню
         const burger = document.getElementById('burger');
         const navMenu = document.getElementById('navMenu');
-        
+        const body = document.body;
+
         burger.addEventListener('click', () => {
             burger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
         });
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 burger.classList.remove('active');
                 navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
             });
         });
 
@@ -815,6 +208,7 @@
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 burger.classList.remove('active');
                 navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
             }
         });
     </script>

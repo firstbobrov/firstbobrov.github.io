@@ -4,268 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>World of Tanks | Егор Яковьюк</title>
-    
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
+    <!-- Единый файл стилей -->
+    <link rel="stylesheet" href="css/style.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ===== ТОЛЬКО УНИКАЛЬНЫЕ СТИЛИ ДЛЯ wot.html ===== */
+        /* ВСЕ СТИЛИ НИЖЕ ОСТАВЛЯЕМ - ОНИ УНИКАЛЬНЫ ДЛЯ ЭТОЙ СТРАНИЦЫ */
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0c0f15;
-            color: #e5e9f0;
-            line-height: 1.5;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ===== ШАПКА (ИДЕАЛЬНО ОДИНАКОВАЯ ДЛЯ ВСЕХ СТРАНИЦ) ===== */
-        .header {
-            background: linear-gradient(180deg, #0f1219 0%, rgba(12,15,21,0.98) 100%);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            width: 100%;
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff8e7, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-decoration: none;
-            line-height: 1.2;
-            z-index: 1001;
-            white-space: nowrap;
-        }
-
-        .logo span {
-            font-size: 0.65rem;
-            color: #d4af37;
-            display: block;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-        }
-
-        .burger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .burger span {
-            display: block;
-            width: 100%;
-            height: 2.5px;
-            background-color: #d4af37;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .burger.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-
-        .burger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 24px;
-        }
-
-        .nav-link {
-            color: #b9c4d1;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 6px 0;
-            position: relative;
-            white-space: nowrap;
-            transition: color 0.2s;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #d4af37, #f5e6b3);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #fff;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .nav-link.active {
-            color: #d4af37;
-            font-weight: 600;
-        }
-
-        /* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
-        .main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* ===== ЗАГОЛОВОК СТРАНИЦЫ ===== */
-        .page-header {
-            text-align: center;
-            margin: 20px 0 40px;
-        }
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #ffffff, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .page-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: #a0aec0;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* ===== СТАТИСТИКА В ЦИФРАХ ===== */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .stat-card {
-            background: linear-gradient(145deg, #131821, #0e121b);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 20px;
-            padding: 25px 15px;
-            text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #d4af37, #f5e6b3);
-            transform: translateX(-100%);
-            transition: transform 0.4s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-
-        .stat-card:hover::before {
-            transform: translateX(0);
-        }
-
-        .stat-icon {
-            font-size: 2rem;
-            color: #d4af37;
-            margin-bottom: 10px;
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #b9c4d1;
-            letter-spacing: 0.5px;
-        }
-
-        /* ===== ЗАГОЛОВКИ СЕКЦИЙ ===== */
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 700;
-            margin: 30px 0 20px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #d4af37, transparent);
-        }
-
-        /* ===== ТРОФЕИ ===== */
+        /* ТРОФЕИ */
         .trophies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -329,7 +85,7 @@
             color: #a0aec0;
         }
 
-        /* ===== КАРТОЧКИ ПО ГОДАМ (ИСПРАВЛЕННЫЕ) ===== */
+        /* КАРТОЧКИ ПО ГОДАМ */
         .years-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -347,7 +103,6 @@
             overflow: hidden;
         }
 
-        /* Динамическая полоса сверху (как на главной) */
         .year-card::before {
             content: '';
             position: absolute;
@@ -401,160 +156,19 @@
             color: #d4af37;
         }
 
-        /* ===== ТАБЛИЦА ТУРНИРОВ ===== */
+        /* ТАБЛИЦА ТУРНИРОВ */
         .tournaments-section {
             margin: 40px 0;
         }
 
-        .table-container {
-            background: linear-gradient(145deg, #131821, #0e121b);
-            border-radius: 20px;
-            padding: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .tournament-table {
-            width: 100%;
-            min-width: 700px;
-            border-collapse: collapse;
-        }
-
-        .tournament-table th {
-            text-align: left;
-            padding: 15px 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #d4af37;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .tournament-table td {
-            padding: 12px 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.9rem;
-            color: #e5e9f0;
-        }
-
-        .tournament-table tr:hover td {
-            background: rgba(212, 175, 55, 0.05);
-        }
-
-        .tournament-table .gold {
-            color: #d4af37;
-            font-weight: 600;
-        }
-
-        .tournament-table .win {
-            background: rgba(212, 175, 55, 0.1);
-            border-left: 4px solid #d4af37;
-        }
-
-        /* ===== ФУТЕР ===== */
-        .footer {
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
-            padding: 25px 0;
-            margin-top: 40px;
-            text-align: center;
-            color: #68748e;
-        }
-
-        .legacy {
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .legacy i {
-            color: #d4af37;
-            margin: 0 5px;
-        }
-
-        /* ===== АДАПТАЦИЯ ДЛЯ РАЗНЫХ ЭКРАНОВ ===== */
-        @media (max-width: 1000px) {
-            .nav-menu {
-                gap: 16px;
-            }
-            
-            .nav-link {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .burger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 350px;
-                height: 100vh;
-                background: #0f1219;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 30px;
-                transition: right 0.3s ease;
-                border-left: 1px solid rgba(212, 175, 55, 0.2);
-                z-index: 1000;
-                padding: 20px;
-            }
-
-            .nav-menu.active {
-                right: 0;
-            }
-
-            .nav-link {
-                font-size: 1.2rem;
-                white-space: normal;
-            }
-        }
-
+        /* АДАПТАЦИЯ ТОЛЬКО ДЛЯ УНИКАЛЬНЫХ ЭЛЕМЕНТОВ */
         @media (max-width: 600px) {
-            .header-container {
-                padding: 10px 15px;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .logo span {
-                font-size: 0.55rem;
-            }
-
-            .main {
-                padding: 15px;
-            }
-
-            .page-header {
-                margin: 10px 0 30px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .stat-card {
-                padding: 20px 15px;
-            }
-
             .years-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
             }
 
             .trophies-grid {
                 grid-template-columns: 1fr;
-                gap: 12px;
             }
 
             .year-card {
@@ -564,35 +178,11 @@
             .year-card .year {
                 font-size: 1.6rem;
             }
-
-            .tournament-table th,
-            .tournament-table td {
-                padding: 10px 8px;
-                font-size: 0.85rem;
-            }
         }
 
         @media (min-width: 601px) and (max-width: 900px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .trophies-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1400px) {
-            .nav-link {
-                font-size: 1rem;
-            }
-            
-            .page-title {
-                font-size: 4rem;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
             }
         }
     </style>
@@ -604,13 +194,11 @@
                 EGOR YAKOVYUK
                 <span>THE LEGEND</span>
             </a>
-            
             <div class="burger" id="burger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-
             <nav class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">Главная</a>
                 <a href="bio.html" class="nav-link">Биография</a>
@@ -628,6 +216,7 @@
             <p class="page-subtitle">Полная история танковой карьеры: 2014–2022</p>
         </div>
 
+        <!-- СТАТИСТИКА - СТИЛИ ИЗ ОБЩЕГО CSS -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-trophy"></i></div>
@@ -783,7 +372,7 @@
             <div class="legacy">
                 <i class="fas fa-crown"></i> 3× Чемпион мира · Зал славы WoT · Легенда Tarkov <i class="fas fa-crown"></i>
             </div>
-            <div style="margin-top: 10px; font-size: 0.75rem;">
+            <div class="footer-copyright">
                 © 2025 — официальный сайт Егора Яковьюка
             </div>
         </footer>
@@ -792,16 +381,19 @@
     <script>
         const burger = document.getElementById('burger');
         const navMenu = document.getElementById('navMenu');
-        
+        const body = document.body;
+
         burger.addEventListener('click', () => {
             burger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
         });
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 burger.classList.remove('active');
                 navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
             });
         });
 
@@ -809,6 +401,7 @@
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 burger.classList.remove('active');
                 navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
             }
         });
     </script>

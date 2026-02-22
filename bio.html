@@ -17,180 +17,11 @@
     <!-- Font Awesome 6.5.1 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- Единый файл стилей -->
+    <link rel="stylesheet" href="css/style.css">
+    
     <style>
-        /* ===== СБРОС И БАЗОВЫЕ СТИЛИ ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0c0f15;
-            color: #e5e9f0;
-            line-height: 1.5;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ===== ШАПКА (ИДЕАЛЬНО ОДИНАКОВАЯ ДЛЯ ВСЕХ СТРАНИЦ) ===== */
-        .header {
-            background: linear-gradient(180deg, #0f1219 0%, rgba(12,15,21,0.98) 100%);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            width: 100%;
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff8e7, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-decoration: none;
-            line-height: 1.2;
-            z-index: 1001;
-            white-space: nowrap;
-        }
-
-        .logo span {
-            font-size: 0.65rem;
-            color: #d4af37;
-            display: block;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-        }
-
-        .burger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .burger span {
-            display: block;
-            width: 100%;
-            height: 2.5px;
-            background-color: #d4af37;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .burger.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-
-        .burger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 24px;
-        }
-
-        .nav-link {
-            color: #b9c4d1;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 6px 0;
-            position: relative;
-            white-space: nowrap;
-            transition: color 0.2s;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #d4af37, #f5e6b3);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #fff;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .nav-link.active {
-            color: #d4af37;
-            font-weight: 600;
-        }
-
-        /* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
-        .main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* ===== ЗАГОЛОВОК СТРАНИЦЫ ===== */
-        .page-header {
-            text-align: center;
-            margin: 20px 0 40px;
-        }
-
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #ffffff, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
-        }
-
-        .page-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: #a0aec0;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* ===== ВРЕМЕННАЯ ЛИНИЯ ===== */
+        /* Специфичные стили только для bio.html */
         .timeline {
             position: relative;
             max-width: 1000px;
@@ -265,7 +96,6 @@
             color: #d4af37;
         }
 
-        /* ===== ЦИТАТА ===== */
         .quote-block {
             background: linear-gradient(145deg, #131821, #0e121b);
             border-left: 4px solid #d4af37;
@@ -290,7 +120,6 @@
             letter-spacing: 1px;
         }
 
-        /* ===== КАРТОЧКИ С ФАКТАМИ ===== */
         .facts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -331,27 +160,6 @@
             font-size: 0.9rem;
         }
 
-        /* ===== ФУТЕР ===== */
-        .footer {
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
-            padding: 25px 0;
-            margin-top: 40px;
-            text-align: center;
-            color: #68748e;
-        }
-
-        .legacy {
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .legacy i {
-            color: #d4af37;
-            margin: 0 5px;
-        }
-
-        /* ===== АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ И ДЕСКТОПА ===== */
         @media (min-width: 768px) {
             .timeline::before {
                 left: 50%;
@@ -384,71 +192,7 @@
             }
         }
 
-        /* ===== АДАПТАЦИЯ ДЛЯ РАЗНЫХ ЭКРАНОВ ===== */
-        @media (max-width: 1000px) {
-            .nav-menu {
-                gap: 16px;
-            }
-            
-            .nav-link {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .burger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 350px;
-                height: 100vh;
-                background: #0f1219;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 30px;
-                transition: right 0.3s ease;
-                border-left: 1px solid rgba(212, 175, 55, 0.2);
-                z-index: 1000;
-                padding: 20px;
-            }
-
-            .nav-menu.active {
-                right: 0;
-            }
-
-            .nav-link {
-                font-size: 1.2rem;
-                white-space: normal;
-            }
-        }
-
         @media (max-width: 600px) {
-            .header-container {
-                padding: 10px 15px;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .logo span {
-                font-size: 0.55rem;
-            }
-
-            .main {
-                padding: 15px;
-            }
-
-            .page-header {
-                margin: 10px 0 30px;
-            }
-
             .timeline-item {
                 padding-left: 45px;
             }
@@ -470,20 +214,9 @@
                 gap: 15px;
             }
         }
-
-        @media (min-width: 1400px) {
-            .nav-link {
-                font-size: 1rem;
-            }
-            
-            .page-title {
-                font-size: 4rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- ШАПКА -->
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
@@ -491,7 +224,6 @@
                 <span>THE LEGEND</span>
             </a>
             
-            <!-- Бургер-меню -->
             <div class="burger" id="burger">
                 <span></span>
                 <span></span>
@@ -510,124 +242,103 @@
     </header>
 
     <main class="main">
-        <!-- ЗАГОЛОВОК -->
         <div class="page-header">
             <h1 class="page-title">История легенды</h1>
             <p class="page-subtitle">Путь от простого парня до трёхкратного чемпиона мира</p>
         </div>
 
-        <!-- ВРЕМЕННАЯ ЛИНИЯ ЖИЗНИ -->
         <div class="timeline">
-            <!-- 2004 - Рождение -->
+            <!-- 2004 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-year">2004</div>
                     <div class="timeline-title">Начало пути</div>
-                    <div class="timeline-text">
-                        Родился в небольшом городе. С детства увлекался компьютерными играми и техникой. Первый компьютер появился в 10 лет — именно тогда началась любовь к играм.
-                    </div>
+                    <div class="timeline-text">Родился в небольшом городе. С детства увлекался компьютерными играми и техникой. Первый компьютер появился в 10 лет — именно тогда началась любовь к играм.</div>
                 </div>
             </div>
 
-            <!-- 2014 - Первые шаги в киберспорте -->
+            <!-- 2014 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-year">2014</div>
                     <div class="timeline-title">Первые турниры</div>
-                    <div class="timeline-text">
-                        Начал играть в World of Tanks на любительском уровне. Первый локальный турнир — сразу победа. Стало понятно, что это не просто хобби.
-                    </div>
+                    <div class="timeline-text">Начал играть в World of Tanks на любительском уровне. Первый локальный турнир — сразу победа. Стало понятно, что это не просто хобби.</div>
                 </div>
             </div>
 
-            <!-- 2016 - Профессиональная карьера -->
+            <!-- 2016 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-year">2016</div>
                     <div class="timeline-title">Профессиональный дебют</div>
-                    <div class="timeline-text">
-                        Подписал первый профессиональный контракт. Вошёл в основной состав команды, начались тренировки по 10 часов в день.
-                    </div>
+                    <div class="timeline-text">Подписал первый профессиональный контракт. Вошёл в основной состав команды, начались тренировки по 10 часов в день.</div>
                 </div>
             </div>
 
-            <!-- 2018 - Первый чемпионат мира -->
+            <!-- 2018 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-year">2018</div>
                     <div class="timeline-title">Первый чемпионат мира</div>
-                    <div class="timeline-text">
-                        <strong>Первое золото!</strong> В возрасте 20 лет стал чемпионом мира по World of Tanks. Самый молодой чемпион в истории дисциплины на тот момент.
-                    </div>
+                    <div class="timeline-text"><strong>Первое золото!</strong> В возрасте 20 лет стал чемпионом мира по World of Tanks. Самый молодой чемпион в истории дисциплины на тот момент.</div>
                 </div>
             </div>
 
-            <!-- 2020 - Второй титул -->
+            <!-- 2020 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-year">2020</div>
                     <div class="timeline-title">Второй чемпионат мира</div>
-                    <div class="timeline-text">
-                        Подтвердил статус легенды — второй титул чемпиона мира. Признан лучшим игроком турнира.
-                    </div>
+                    <div class="timeline-text">Подтвердил статус легенды — второй титул чемпиона мира. Признан лучшим игроком турнира.</div>
                 </div>
             </div>
 
-            <!-- 2021 - Третий титул и рекорд -->
+            <!-- 2021 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-year">2021</div>
                     <div class="timeline-title">Трёхкратный чемпион</div>
-                    <div class="timeline-text">
-                        <strong>Историческое достижение:</strong> третий титул чемпиона мира. Абсолютный рекорд, который до сих пор не побит.
-                    </div>
+                    <div class="timeline-text"><strong>Историческое достижение:</strong> третий титул чемпиона мира. Абсолютный рекорд, который до сих пор не побит.</div>
                 </div>
             </div>
 
-            <!-- 2022 - Завершение карьеры танкиста -->
+            <!-- 2022 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-year">2022</div>
                     <div class="timeline-title">Завершение эпохи</div>
-                    <div class="timeline-text">
-                        Принял решение завершить карьеру профессионального танкиста. Ушёл на пике, оставив после себя легендарное наследие.
-                    </div>
+                    <div class="timeline-text">Принял решение завершить карьеру профессионального танкиста. Ушёл на пике, оставив после себя легендарное наследие.</div>
                 </div>
             </div>
 
-            <!-- 2023 - Новая глава: Tarkov -->
+            <!-- 2023 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-year">2023</div>
                     <div class="timeline-title">Перерождение в Tarkov</div>
-                    <div class="timeline-text">
-                        Начал новый этап — Escape from Tarkov. Всего за год вошёл в топ-10 мирового рейтинга, доказав, что чемпионский характер никуда не делся.
-                    </div>
+                    <div class="timeline-text">Начал новый этап — Escape from Tarkov. Всего за год вошёл в топ-10 мирового рейтинга, доказав, что чемпионский характер никуда не делся.</div>
                 </div>
             </div>
 
-            <!-- 2025 - Настоящее время -->
+            <!-- 2025 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-year">2025</div>
                     <div class="timeline-title">Настоящее время</div>
-                    <div class="timeline-text">
-                        Один из сильнейших игроков в Tarkov, стример, пример для нового поколения. Продолжает доказывать, что легенды не уходят — они меняют дисциплины.
-                    </div>
+                    <div class="timeline-text">Один из сильнейших игроков в Tarkov, стример, пример для нового поколения. Продолжает доказывать, что легенды не уходят — они меняют дисциплины.</div>
                 </div>
             </div>
         </div>
 
-        <!-- ЦИТАТА -->
         <div class="quote-block">
             <div class="quote-text">
                 «Я не ушёл из киберспорта — я просто сменил поле боя. Танки научили меня стратегии, Тарков научил выживанию. Легенды не заканчиваются, они трансформируются»
@@ -635,7 +346,6 @@
             <div class="quote-author">— Егор Яковьюк, 2025</div>
         </div>
 
-        <!-- ИНТЕРЕСНЫЕ ФАКТЫ -->
         <h2 style="font-family: 'Playfair Display'; font-size: clamp(1.8rem, 5vw, 2.5rem); margin: 40px 0 20px; text-align: center; color: #fff;">Интересные факты</h2>
         
         <div class="facts-grid">
@@ -644,19 +354,16 @@
                 <div class="fact-number">15 000+</div>
                 <div class="fact-label">часов в World of Tanks</div>
             </div>
-            
             <div class="fact-card">
                 <div class="fact-icon"><i class="fas fa-trophy"></i></div>
                 <div class="fact-number">47</div>
                 <div class="fact-label">крупных турниров</div>
             </div>
-            
             <div class="fact-card">
                 <div class="fact-icon"><i class="fas fa-globe"></i></div>
                 <div class="fact-number">12</div>
                 <div class="fact-label">стран с турнирами</div>
             </div>
-            
             <div class="fact-card">
                 <div class="fact-icon"><i class="fas fa-users"></i></div>
                 <div class="fact-number">50 000+</div>
@@ -664,40 +371,40 @@
             </div>
         </div>
 
-        <!-- ПОДВАЛ -->
         <footer class="footer">
             <div class="legacy">
                 <i class="fas fa-crown"></i> 3× Чемпион мира · Зал славы WoT · Легенда Tarkov <i class="fas fa-crown"></i>
             </div>
-            <div style="margin-top: 20px; font-size: 0.75rem;">
+            <div class="footer-copyright">
                 © 2025 — официальный сайт Егора Яковьюка
             </div>
         </footer>
     </main>
 
     <script>
-        // Бургер-меню
         const burger = document.getElementById('burger');
         const navMenu = document.getElementById('navMenu');
+        const body = document.body;
         
         burger.addEventListener('click', () => {
             burger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
         });
 
-        // Закрытие меню при клике на ссылку
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 burger.classList.remove('active');
                 navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
             });
         });
 
-        // Закрытие по ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 burger.classList.remove('active');
                 navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
             }
         });
     </script>
