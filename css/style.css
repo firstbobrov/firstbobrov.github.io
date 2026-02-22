@@ -5,6 +5,32 @@
     box-sizing: border-box;
 }
 
+
+
+/* ===== СТРУКТУРА ДЛЯ ПРИЛИПАНИЯ ПОДВАЛА ===== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+
+
 /* Глобальный запрет горизонтального скролла */
 html {
     overflow-x: hidden;
