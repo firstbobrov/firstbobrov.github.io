@@ -2,23 +2,19 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>World of Tanks | Егор Яковьюк</title>
     
-    <!-- Фавикон -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     
-    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome 6.5.1 (обновленная версия) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
         * {
             margin: 0;
             padding: 0;
@@ -29,65 +25,107 @@
             font-family: 'Inter', sans-serif;
             background-color: #0c0f15;
             color: #e5e9f0;
-            line-height: 1.6;
+            line-height: 1.5;
+            overflow-x: hidden;
+            width: 100%;
         }
 
-        /* ШАПКА */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== ШАПКА (ИДЕАЛЬНО ОДИНАКОВАЯ ДЛЯ ВСЕХ СТРАНИЦ) ===== */
         .header {
-            background: linear-gradient(180deg, #0f1219 0%, rgba(12,15,21,0.95) 100%);
+            background: linear-gradient(180deg, #0f1219 0%, rgba(12,15,21,0.98) 100%);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 20px 0;
+            width: 100%;
         }
 
         .header-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            letter-spacing: 1px;
             background: linear-gradient(135deg, #fff8e7, #d4af37);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-decoration: none;
+            line-height: 1.2;
+            z-index: 1001;
+            white-space: nowrap;
         }
 
         .logo span {
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
+            font-size: 0.65rem;
             color: #d4af37;
             display: block;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .burger span {
+            display: block;
+            width: 100%;
+            height: 2.5px;
+            background-color: #d4af37;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .burger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
         }
 
         .nav-menu {
             display: flex;
-            gap: 40px;
+            gap: 24px;
         }
 
         .nav-link {
             color: #b9c4d1;
             text-decoration: none;
             font-weight: 500;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            padding: 8px 0;
+            font-size: 0.95rem;
+            padding: 6px 0;
             position: relative;
-            transition: 0.2s;
+            white-space: nowrap;
+            transition: color 0.2s;
         }
 
         .nav-link::after {
@@ -105,7 +143,8 @@
             color: #fff;
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
             width: 100%;
         }
 
@@ -114,28 +153,24 @@
             font-weight: 600;
         }
 
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        /* ОСНОВНОЙ КОНТЕЙНЕР */
+        /* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
         .main {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 40px;
+            padding: 20px;
         }
 
-        /* ЗАГОЛОВОК СТРАНИЦЫ */
+        /* ===== ЗАГОЛОВОК СТРАНИЦЫ ===== */
         .page-header {
             text-align: center;
-            margin: 40px 0 60px;
+            margin: 20px 0 40px;
         }
 
         .page-title {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: clamp(2.2rem, 6vw, 4rem);
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             background: linear-gradient(135deg, #ffffff, #d4af37);
             -webkit-background-clip: text;
             background-clip: text;
@@ -143,65 +178,79 @@
         }
 
         .page-subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
             color: #a0aec0;
             max-width: 700px;
             margin: 0 auto;
+            padding: 0 15px;
         }
 
-        /* СТАТИСТИКА В ЦИФРАХ */
+        /* ===== СТАТИСТИКА В ЦИФРАХ ===== */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
         }
 
         .stat-card {
             background: linear-gradient(145deg, #131821, #0e121b);
             border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 30px;
-            padding: 40px 20px;
+            border-radius: 20px;
+            padding: 25px 15px;
             text-align: center;
-            transition: 0.3s;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f5e6b3);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
         }
 
         .stat-card:hover {
-            border-color: #d4af37;
             transform: translateY(-5px);
-            box-shadow: 0 20px 30px -10px #000;
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .stat-card:hover::before {
+            transform: translateX(0);
         }
 
         .stat-icon {
-            font-size: 3rem;
+            font-size: 2rem;
             color: #d4af37;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .stat-number {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 700;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .stat-label {
-            font-size: 1rem;
+            font-size: 0.8rem;
             color: #b9c4d1;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        /* ТАБЛИЦА ТУРНИРОВ */
-        .tournaments-section {
-            margin: 80px 0;
-        }
-
+        /* ===== ЗАГОЛОВКИ СЕКЦИЙ ===== */
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 700;
-            margin-bottom: 40px;
+            margin: 30px 0 20px;
             position: relative;
             display: inline-block;
         }
@@ -209,40 +258,184 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -8px;
             left: 0;
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: linear-gradient(90deg, #d4af37, transparent);
+        }
+
+        /* ===== ТРОФЕИ ===== */
+        .trophies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .trophy-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(19,24,33,0.5);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trophy-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f5e6b3);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .trophy-item:hover {
+            transform: translateY(-3px);
+            border-color: #d4af37;
+        }
+
+        .trophy-item:hover::before {
+            transform: translateX(0);
+        }
+
+        .trophy-icon {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .trophy-year {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .trophy-title {
+            color: #d4af37;
+            font-weight: 600;
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .trophy-desc {
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        /* ===== КАРТОЧКИ ПО ГОДАМ (ИСПРАВЛЕННЫЕ) ===== */
+        .years-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .year-card {
+            background: linear-gradient(145deg, #131821, #0e121b);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Динамическая полоса сверху (как на главной) */
+        .year-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f5e6b3);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .year-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .year-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .year-card .year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .year-card .achievement {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .year-card .achievement i {
+            color: #d4af37;
+            font-size: 0.9rem;
+            margin-top: 4px;
+            min-width: 16px;
+        }
+
+        .year-card .achievement span {
+            color: #e5e9f0;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .year-card .achievement strong {
+            color: #d4af37;
+        }
+
+        /* ===== ТАБЛИЦА ТУРНИРОВ ===== */
+        .tournaments-section {
+            margin: 40px 0;
         }
 
         .table-container {
             background: linear-gradient(145deg, #131821, #0e121b);
-            border-radius: 30px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 15px;
             border: 1px solid rgba(212, 175, 55, 0.15);
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .tournament-table {
             width: 100%;
+            min-width: 700px;
             border-collapse: collapse;
         }
 
         .tournament-table th {
             text-align: left;
-            padding: 20px 15px;
-            font-size: 1rem;
+            padding: 15px 10px;
+            font-size: 0.9rem;
             font-weight: 600;
             color: #d4af37;
             border-bottom: 2px solid rgba(212, 175, 55, 0.3);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .tournament-table td {
-            padding: 15px;
+            padding: 12px 10px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
             color: #e5e9f0;
         }
 
@@ -260,158 +453,165 @@
             border-left: 4px solid #d4af37;
         }
 
-        /* ТРОФЕИ */
-        .trophies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .trophy-item {
-            text-align: center;
-            padding: 30px;
-            background: rgba(19,24,33,0.5);
-            border-radius: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .trophy-icon {
-            font-size: 3rem;
-            color: #d4af37;
-            margin-bottom: 15px;
-        }
-
-        .trophy-year {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .trophy-title {
-            color: #d4af37;
-            font-weight: 600;
-            margin: 10px 0;
-        }
-
-        .trophy-desc {
-            font-size: 0.9rem;
-            color: #a0aec0;
-        }
-
-        /* КАРТОЧКИ ПО ГОДАМ - ИСПРАВЛЕННАЯ ВЕРСИЯ */
-        .years-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-        }
-
-        .year-card {
-            background: linear-gradient(145deg, #131821, #0e121b);
-            border-radius: 30px;
-            padding: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .year-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(180deg, #d4af37, #f5e6b3);
-        }
-
-        .year-card .year {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #d4af37;
-            margin-bottom: 20px;
-        }
-
-        /* ИСПРАВЛЕНИЕ: вместо пиксельного символа используем Flexbox с иконкой */
-        .year-card .achievement {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .year-card .achievement i {
-            color: #d4af37;
-            font-size: 1rem;
-            margin-top: 4px;
-            min-width: 16px;
-        }
-
-        .year-card .achievement span {
-            color: #e5e9f0;
-            line-height: 1.5;
-            flex: 1;
-        }
-
-        .year-card .achievement strong {
-            color: #d4af37;
-        }
-
-        /* ФУТЕР */
+        /* ===== ФУТЕР ===== */
         .footer {
             border-top: 1px solid rgba(212, 175, 55, 0.15);
-            padding: 40px 0;
-            margin-top: 60px;
+            padding: 25px 0;
+            margin-top: 40px;
             text-align: center;
             color: #68748e;
         }
 
         .legacy {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
         .legacy i {
             color: #d4af37;
-            margin: 0 10px;
+            margin: 0 5px;
         }
 
-        /* АДАПТАЦИЯ */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 20px;
+        /* ===== АДАПТАЦИЯ ДЛЯ РАЗНЫХ ЭКРАНОВ ===== */
+        @media (max-width: 1000px) {
+            .nav-menu {
+                gap: 16px;
             }
             
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .burger {
+                display: flex;
+            }
+
             .nav-menu {
-                gap: 15px;
-                flex-wrap: wrap;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 350px;
+                height: 100vh;
+                background: #0f1219;
+                flex-direction: column;
                 justify-content: center;
+                align-items: center;
+                gap: 30px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(212, 175, 55, 0.2);
+                z-index: 1000;
+                padding: 20px;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-link {
+                font-size: 1.2rem;
+                white-space: normal;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-container {
+                padding: 10px 15px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo span {
+                font-size: 0.55rem;
+            }
+
+            .main {
+                padding: 15px;
+            }
+
+            .page-header {
+                margin: 10px 0 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 20px 15px;
+            }
+
+            .years-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .trophies-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .year-card {
+                padding: 20px;
+            }
+
+            .year-card .year {
+                font-size: 1.6rem;
+            }
+
+            .tournament-table th,
+            .tournament-table td {
+                padding: 10px 8px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .trophies-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .nav-link {
+                font-size: 1rem;
             }
             
             .page-title {
-                font-size: 2.5rem;
+                font-size: 4rem;
             }
             
-            .tournament-table th,
-            .tournament-table td {
-                padding: 10px;
-                font-size: 0.9rem;
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- ШАПКА -->
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
                 EGOR YAKOVYUK
                 <span>THE LEGEND</span>
             </a>
-            <nav class="nav-menu">
+            
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">Главная</a>
                 <a href="bio.html" class="nav-link">Биография</a>
                 <a href="wot.html" class="nav-link active">World of Tanks</a>
@@ -423,13 +623,11 @@
     </header>
 
     <main class="main">
-        <!-- ЗАГОЛОВОК -->
         <div class="page-header">
             <h1 class="page-title">World of Tanks</h1>
             <p class="page-subtitle">Полная история танковой карьеры: 2014–2022</p>
         </div>
 
-        <!-- СТАТИСТИКА В ЦИФРАХ -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-trophy"></i></div>
@@ -448,60 +646,58 @@
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                <div class="stat-number">15 000+</div>
+                <div class="stat-number">15K+</div>
                 <div class="stat-label">Часов</div>
             </div>
         </div>
 
-        <!-- ТРОФЕИ (3 ЧЕМПИОНСТВА) -->
         <h2 class="section-title">Чемпионские титулы</h2>
         <div class="trophies-grid">
             <div class="trophy-item">
                 <div class="trophy-icon"><i class="fas fa-crown"></i></div>
                 <div class="trophy-year">2018</div>
                 <div class="trophy-title">Чемпион мира</div>
-                <div class="trophy-desc">Первый титул, прорыв года</div>
+                <div class="trophy-desc">Первый титул</div>
             </div>
             <div class="trophy-item">
                 <div class="trophy-icon"><i class="fas fa-crown"></i></div>
                 <div class="trophy-year">2020</div>
                 <div class="trophy-title">Чемпион мира</div>
-                <div class="trophy-desc">Лучший игрок турнира</div>
+                <div class="trophy-desc">Лучший игрок</div>
             </div>
             <div class="trophy-item">
                 <div class="trophy-icon"><i class="fas fa-crown"></i></div>
                 <div class="trophy-year">2021</div>
                 <div class="trophy-title">Чемпион мира</div>
-                <div class="trophy-desc">Третий титул, абсолютный рекорд</div>
+                <div class="trophy-desc">Абсолютный рекорд</div>
             </div>
         </div>
 
-        <!-- КАРЬЕРА ПО ГОДАМ - ИСПРАВЛЕННАЯ ВЕРСИЯ С ИКОНКАМИ -->
         <h2 class="section-title">Карьера по годам</h2>
         <div class="years-grid">
             <div class="year-card">
                 <div class="year">2014-2015</div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Начало пути в любительских турнирах</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Первые победы на локальных соревнованиях</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Замечен скаутами профессиональных команд</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Начало пути</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Первые победы</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Замечен скаутами</span></div>
             </div>
             <div class="year-card">
                 <div class="year">2016</div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Подписание первого профессионального контракта</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Дебют в основном составе команды</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Топ-8 на первом международном турнире</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Профессиональный контракт</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Дебют в основном составе</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Топ-8 на международном турнире</span></div>
             </div>
             <div class="year-card">
                 <div class="year">2017</div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Серебро на чемпионате Европы</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Попадание в топ-10 мирового рейтинга</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Признан лучшим новичком года</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Серебро чемпионата Европы</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Топ-10 мирового рейтинга</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Лучший новичок года</span></div>
             </div>
             <div class="year-card">
                 <div class="year">2018</div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span><strong>ЧЕМПИОН МИРА</strong> (первый титул)</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span><strong>ЧЕМПИОН МИРА</strong></span></div>
                 <div class="achievement"><i class="fas fa-caret-right"></i> <span>Лучший игрок финала</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Вхождение в мировой топ-3</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Мировой топ-3</span></div>
             </div>
             <div class="year-card">
                 <div class="year">2019</div>
@@ -511,27 +707,26 @@
             </div>
             <div class="year-card">
                 <div class="year">2020</div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span><strong>ЧЕМПИОН МИРА</strong> (второй титул)</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span><strong>ЧЕМПИОН МИРА</strong></span></div>
                 <div class="achievement"><i class="fas fa-caret-right"></i> <span>MVP турнира</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Рекорд по фрагам за турнир</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Рекорд по фрагам</span></div>
             </div>
             <div class="year-card">
                 <div class="year">2021</div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span><strong>ЧЕМПИОН МИРА</strong> (третий титул)</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Абсолютный рекорд в истории</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span><strong>ЧЕМПИОН МИРА</strong></span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Абсолютный рекорд</span></div>
                 <div class="achievement"><i class="fas fa-caret-right"></i> <span>Легендарный финал</span></div>
             </div>
             <div class="year-card">
                 <div class="year">2022</div>
                 <div class="achievement"><i class="fas fa-caret-right"></i> <span>Финальный сезон</span></div>
                 <div class="achievement"><i class="fas fa-caret-right"></i> <span>Победа на прощальном турнире</span></div>
-                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Завершение карьеры танкиста</span></div>
+                <div class="achievement"><i class="fas fa-caret-right"></i> <span>Завершение карьеры</span></div>
             </div>
         </div>
 
-        <!-- ТАБЛИЦА ВСЕХ ТУРНИРОВ -->
         <section class="tournaments-section">
-            <h2 class="section-title">Все турниры и достижения</h2>
+            <h2 class="section-title">Все турниры</h2>
             <div class="table-container">
                 <table class="tournament-table">
                     <thead>
@@ -540,127 +735,82 @@
                             <th>Турнир</th>
                             <th>Место</th>
                             <th>Награда</th>
-                            <th>Особые достижения</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="win">
                             <td>2022</td>
-                            <td>Legends Cup (прощальный)</td>
+                            <td>Legends Cup</td>
                             <td class="gold">1 место</td>
                             <td>Золото</td>
-                            <td>MVP турнира</td>
                         </tr>
                         <tr class="win">
                             <td>2021</td>
                             <td>WGL Чемпионат мира</td>
                             <td class="gold">1 место</td>
                             <td>Золото</td>
-                            <td>Третий титул, абсолютный рекорд</td>
                         </tr>
                         <tr>
                             <td>2021</td>
                             <td>WGL Grand Slam</td>
                             <td class="gold">1 место</td>
                             <td>Золото</td>
-                            <td>Лучший игрок турнира</td>
                         </tr>
                         <tr class="win">
                             <td>2020</td>
                             <td>WGL Чемпионат мира</td>
                             <td class="gold">1 место</td>
                             <td>Золото</td>
-                            <td>Второй титул, MVP</td>
-                        </tr>
-                        <tr>
-                            <td>2020</td>
-                            <td>WGL European League</td>
-                            <td class="gold">1 место</td>
-                            <td>Золото</td>
-                            <td>Победная серия 10 матчей</td>
                         </tr>
                         <tr>
                             <td>2019</td>
                             <td>WGL Чемпионат мира</td>
                             <td>2 место</td>
                             <td>Серебро</td>
-                            <td>Финал против Na'Vi</td>
-                        </tr>
-                        <tr>
-                            <td>2019</td>
-                            <td>WGL European League</td>
-                            <td class="gold">1 место</td>
-                            <td>Золото</td>
-                            <td>Капитан команды</td>
                         </tr>
                         <tr class="win">
                             <td>2018</td>
                             <td>WGL Чемпионат мира</td>
                             <td class="gold">1 место</td>
                             <td>Золото</td>
-                            <td>Первый титул, прорыв года</td>
-                        </tr>
-                        <tr>
-                            <td>2018</td>
-                            <td>WGL Grand Finals</td>
-                            <td class="gold">1 место</td>
-                            <td>Золото</td>
-                            <td>Лучший новичок финала</td>
-                        </tr>
-                        <tr>
-                            <td>2017</td>
-                            <td>WGL Чемпионат Европы</td>
-                            <td>2 место</td>
-                            <td>Серебро</td>
-                            <td>Первый международный финал</td>
-                        </tr>
-                        <tr>
-                            <td>2016</td>
-                            <td>WGL Региональный чемпионат</td>
-                            <td class="gold">1 место</td>
-                            <td>Золото</td>
-                            <td>Дебютный сезон</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p style="text-align: right; margin-top: 20px; color: #68748e;">
-                <i class="fas fa-trophy" style="color: #d4af37;"></i> Всего турниров: 47 · Побед: 32
-            </p>
         </section>
 
-        <!-- ОСОБЫЕ ДОСТИЖЕНИЯ -->
-        <div style="background: linear-gradient(145deg, #131821, #0e121b); border-radius: 50px; padding: 50px; margin: 60px 0; border: 1px solid rgba(212,175,55,0.2);">
-            <h2 style="font-family: 'Playfair Display'; font-size: 2rem; margin-bottom: 30px; color: #d4af37;">Рекорды и достижения</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <i class="fas fa-bolt" style="color: #d4af37; font-size: 1.5rem;"></i>
-                    <span>Самый молодой чемпион мира (20 лет)</span>
-                </div>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <i class="fas fa-bolt" style="color: #d4af37; font-size: 1.5rem;"></i>
-                    <span>Единственный трёхкратный чемпион</span>
-                </div>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <i class="fas fa-bolt" style="color: #d4af37; font-size: 1.5rem;"></i>
-                    <span>Лучший игрок 2020 и 2021 годов</span>
-                </div>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <i class="fas fa-bolt" style="color: #d4af37; font-size: 1.5rem;"></i>
-                    <span>Рекорд по победам в WGL (32 победы)</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- ПОДВАЛ -->
         <footer class="footer">
             <div class="legacy">
                 <i class="fas fa-crown"></i> 3× Чемпион мира · Зал славы WoT · Легенда Tarkov <i class="fas fa-crown"></i>
             </div>
-            <div style="margin-top: 20px;">
+            <div style="margin-top: 10px; font-size: 0.75rem;">
                 © 2025 — официальный сайт Егора Яковьюка
             </div>
         </footer>
     </main>
+
+    <script>
+        const burger = document.getElementById('burger');
+        const navMenu = document.getElementById('navMenu');
+        
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                burger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
