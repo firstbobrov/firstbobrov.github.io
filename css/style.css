@@ -726,6 +726,14 @@ img {
     display: flex;
 }
 
+/* Запрещаем скролл страницы при открытом лайтбоксе */
+body:has(.lightbox.active) {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
 .lightbox-img {
     max-width: 90%;
     max-height: 80vh;
@@ -772,11 +780,12 @@ img {
         object-fit: contain;
     }
 
+    /* Круглая подложка для крестика */
     .lightbox-close {
         top: 15px;
         right: 15px;
-        font-size: 2.5rem;
-        background: rgba(0, 0, 0, 0.5);
+        font-size: 2.2rem;
+        background: rgba(0, 0, 0, 0.7);
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -784,24 +793,30 @@ img {
         align-items: center;
         justify-content: center;
         line-height: 1;
+        color: #fff;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        backdrop-filter: blur(2px);
     }
 
     .lightbox-close:hover {
-        background: rgba(212, 175, 55, 0.3);
+        background: rgba(212, 175, 55, 0.8);
+        color: #0c0f15;
+        transform: rotate(90deg) scale(1.1);
     }
 
+    /* Прямоугольная подложка для подписи на всю ширину */
     .lightbox-caption {
-        bottom: 15px;
-        font-size: 0.9rem;
-        padding: 8px 16px;
-        background: rgba(0, 0, 0, 0.7);
-        border-radius: 30px;
-        max-width: 90%;
-        margin: 0 auto;
+        bottom: 0;
         left: 0;
         right: 0;
-        width: fit-content;
+        font-size: 1rem;
+        padding: 15px 20px;
+        background: rgba(0, 0, 0, 0.8);
+        border-top: 1px solid rgba(212, 175, 55, 0.3);
         text-shadow: none;
+        width: 100%;
+        text-align: left;
+        backdrop-filter: blur(2px);
     }
 }
 
